@@ -73,7 +73,7 @@ end
 
 % frequency shift calculation (field map)
 [delf, offset, STDX, MSE] = linfitFrequency3D_EAO(echo_times, delPhaseNet, num_echoes, mag, mask);
-%B0 = delf/gamma; % convert from rad*Hz to T
+B0 = delf/gamma; % convert from rad*Hz to T
 
 %% save rescaled images
 [pathstr, name, ext] = fileparts(phase_fname);
@@ -90,7 +90,7 @@ niak_write_minc(phase_desc,delPhaseNet);
 fname_field_map = strcat(name,'_field_map.mnc');
 phase_desc.file_name = fname_field_map;
 phase_desc.info.dimensions = [phase_desc.info.dimensions(1,1), phase_desc.info.dimensions(1,2), phase_desc.info.dimensions(1,3), 1];
-niak_write_minc(phase_desc,delf);
+niak_write_minc(phase_desc,B0);
 
 % save offset map
 % fname_offset_map = strcat(name,'_offset_map.mnc');
